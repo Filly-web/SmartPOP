@@ -1,5 +1,37 @@
-Flask>=3.0,<4
-Flask-SQLAlchemy>=3.1,<4
-psycopg[binary]>=3.2,<4
-gunicorn>=22,<24
-openpyxl>=3.1,<4
+# Britam POP Management Portal — Sample V1.0
+
+This is a **standalone demonstration build** for reviewing the workflow before connecting any Render PostgreSQL database.
+
+## Included demo functionality
+- Separate submitter and cashier logins
+- POP upload (PDF/JPG/PNG)
+- Mandatory customer name, policy number and amount
+- Cashier inline document viewing and original-file download
+- Return for correction and submitter resubmission
+- Cashier completion of receipt fields and approval
+- Selection of approved POPs into a uniquely referenced batch
+- Excel export using the supplied original six-sheet bulk receipts template
+- Basic audit trail
+
+## Demo accounts
+- Cashier: `cashier` / `Cashier123!`
+- Submitter: `agency1` / `Agency123!`
+
+## Run locally (Windows)
+1. Install Python 3.11 or 3.12.
+2. Extract this ZIP.
+3. Open Command Prompt in the extracted folder.
+4. Run:
+   ```bat
+   py -3.12 -m venv .venv
+   .venv\Scripts\activate
+   pip install -r requirements.txt
+   python app.py
+   ```
+5. Open http://127.0.0.1:5000
+
+## Important
+- Uses a local SQLite database (`pop_sample.db`) and local `uploads/` folder.
+- Does **not** require PostgreSQL, DATABASE_URL, or a Render database.
+- This is for local demonstration and workflow testing only. Do not deploy this sample as a live production service. Before Render production deployment, replace local SQLite with a dedicated POP PostgreSQL database and move uploads to persistent object storage, add CSRF protection, stronger account administration, and production secret management.
+- The supplied Excel workbook is retained unchanged as `bulk_receipts_template.xlsx`. Batch exports append receipt rows to its `Template` sheet and preserve the lookup worksheets.
